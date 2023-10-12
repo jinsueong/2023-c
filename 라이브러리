@@ -1,0 +1,45 @@
+비쥬얼 스튜디오에 들어가서 도구 - 명령줄 - 개발자 명령 프롬포트에 들어간다
+프롬포트에 들어간뒤 mkdir anu라고 쳐서 anu파일을 만든다음
+cd anu로 anu파일에 들어간다
+그다음 myMath.c와 myMath.h 파일을 작성하여 myMath 라이브러리를 만들어 그안에 코드를 쳐 넣는다
+// myMath.h
+int add(int a, int b);
+int subtract(int a, int b);
+int multiply(int a, int b);
+
+// myMath.c
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+myMath 라이브러리를 빌드한다.
+cl /LD myMath.c /link /out:myMath.lib
+예제 프로그램(main.c)을 작성합니다.
+#include <stdio.h>
+#include "myMath.h"
+
+int main() {
+    int a = 22;
+    int b = 33;
+
+    int sum = add(a, b);
+    int difference = subtract(a, b);
+    int product = multiply(a, b);
+
+    printf("The sum of %d and %d is %d\n", a, b, sum);
+    printf("The difference of %d and %d is %d\n", a, b, difference);
+    printf("The product of %d and %d is %d\n", a, b, product);
+
+    return 0;
+}
+예제 프로그램을 빌드한다.
+cl main.c myMath.lib
+
+마지막으로 main.exe을 넣어 결과값을 확인한다
